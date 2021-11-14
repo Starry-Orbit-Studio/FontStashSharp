@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>FontStashSharp</AssemblyName>
+    <Description>FontStashSharp</Description>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <Import Project="..\..\..\build\Platforms.Common.props" />
+
+  <PropertyGroup>
+    <DefineConstants Condition="'$(Platform)'=='SharpDX'">$(DefineConstants);MONOGAME</DefineConstants>
+    <DefineConstants Condition="'$(Platform)'=='WindowsGL'">$(DefineConstants);MONOGAME</DefineConstants>
+    <DefineConstants Condition="'$(Platform)'=='XNAFramework'">$(DefineConstants);XNA</DefineConstants>
+    <DefineConstants Condition="'$(Platform)'=='FNA'">$(DefineConstants);FNA</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cyotek.Drawing.BitmapFont" Version="$(CyotekDrawingBitmapFontVersion)" />
+    <PackageReference Include="StbImageSharp" Version="$(StbImageSharpVersion)" />
+    <PackageReference Include="StbTrueTypeSharp" Version="$(StbTrueTypeSharpVersion)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="..\FontStashSharp\**\*.cs" LinkBase="FontStashSharp" />
+    <Compile Remove="..\FontStashSharp\obj\**\*.cs" LinkBase="FontStashSharp" />
+  </ItemGroup>
+</Project>
