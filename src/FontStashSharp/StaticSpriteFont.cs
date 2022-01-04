@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-#if MONOGAME || FNA
+#if MONOGAME || FNA || XNA
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 #elif STRIDE
@@ -68,7 +68,7 @@ namespace FontStashSharp
 			return result;
 		}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 		protected internal override FontGlyph GetGlyph(GraphicsDevice device, int codepoint)
 #else
 		protected internal override FontGlyph GetGlyph(ITexture2DManager device, int codepoint)
@@ -185,7 +185,7 @@ namespace FontStashSharp
 			return FromBMFont(bmFont, textureGetter);
 		}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 		public unsafe static StaticSpriteFont FromBMFont(string data, Func<string, Stream> imageStreamOpener, GraphicsDevice device)
 #else
 		public unsafe static StaticSpriteFont FromBMFont(string data, Func<string, Stream> imageStreamOpener, ITexture2DManager textureManager)
@@ -223,7 +223,7 @@ namespace FontStashSharp
 						}
 					}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 					var texture = Texture2DManager.CreateTexture(device, image.Width, image.Height);
 					Texture2DManager.SetTextureData(texture, new Rectangle(0, 0, image.Width, image.Height), image.Data);
 #else

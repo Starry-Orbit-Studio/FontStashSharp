@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 
-#if MONOGAME || FNA
+#if MONOGAME || FNA || XNA
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 #elif STRIDE
@@ -39,7 +39,7 @@ namespace FontStashSharp
 			LineHeight = lineHeight;
 		}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 		protected internal abstract FontGlyph GetGlyph(GraphicsDevice device, int codepoint);
 #else
 		protected internal abstract FontGlyph GetGlyph(ITexture2DManager device, int codepoint);
@@ -61,7 +61,7 @@ namespace FontStashSharp
 		public float DrawText(IFontStashRenderer renderer, string text, Vector2 position, Color color,
 													Vector2 scale, float rotation, Vector2 origin, float layerDepth = 0.0f)
 		{
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 			if (renderer.GraphicsDevice == null)
 			{
 				throw new ArgumentNullException("renderer.GraphicsDevice can't be null.");
@@ -98,7 +98,7 @@ namespace FontStashSharp
 					continue;
 				}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 				var glyph = GetGlyph(renderer.GraphicsDevice, codepoint);
 #else
 				var glyph = GetGlyph(renderer.TextureManager, codepoint);
@@ -175,7 +175,7 @@ namespace FontStashSharp
 				throw new ArgumentNullException(nameof(renderer));
 			}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 			if (renderer.GraphicsDevice == null)
 			{
 				throw new ArgumentNullException("renderer.GraphicsDevice can't be null.");
@@ -215,7 +215,7 @@ namespace FontStashSharp
 					continue;
 				}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 				var glyph = GetGlyph(renderer.GraphicsDevice, codepoint);
 #else
 				var glyph = GetGlyph(renderer.TextureManager, codepoint);
@@ -296,7 +296,7 @@ namespace FontStashSharp
 				throw new ArgumentNullException(nameof(renderer));
 			}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 			if (renderer.GraphicsDevice == null)
 			{
 				throw new ArgumentNullException("renderer.GraphicsDevice can't be null.");
@@ -334,7 +334,7 @@ namespace FontStashSharp
 					continue;
 				}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 				var glyph = GetGlyph(renderer.GraphicsDevice, codepoint);
 #else
 				var glyph = GetGlyph(renderer.TextureManager, codepoint);
@@ -411,7 +411,7 @@ namespace FontStashSharp
 				throw new ArgumentNullException(nameof(renderer));
 			}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 			if (renderer.GraphicsDevice == null)
 			{
 				throw new ArgumentNullException("renderer.GraphicsDevice can't be null.");
@@ -451,7 +451,7 @@ namespace FontStashSharp
 					continue;
 				}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 				var glyph = GetGlyph(renderer.GraphicsDevice, codepoint);
 #else
 				var glyph = GetGlyph(renderer.TextureManager, codepoint);

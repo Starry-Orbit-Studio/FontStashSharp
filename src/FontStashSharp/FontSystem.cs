@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-#if MONOGAME || FNA
+#if MONOGAME || FNA || XNA
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 #elif STRIDE
@@ -158,7 +158,7 @@ namespace FontStashSharp
 			return g;
 		}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 		private FontAtlas GetCurrentAtlas(GraphicsDevice device, int textureWidth, int textureHeight)
 #else
 		private FontAtlas GetCurrentAtlas(ITexture2DManager device, int textureWidth, int textureHeight)
@@ -191,7 +191,7 @@ namespace FontStashSharp
 			return _currentAtlas;
 		}
 
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 		internal void RenderGlyphOnAtlas(GraphicsDevice device, DynamicFontGlyph glyph)
 #else
 		internal void RenderGlyphOnAtlas(ITexture2DManager device, DynamicFontGlyph glyph)
@@ -201,7 +201,7 @@ namespace FontStashSharp
 
 			if (ExistingTexture != null)
 			{
-#if MONOGAME || FNA || STRIDE
+#if MONOGAME || FNA || XNA || STRIDE
 				textureSize = new Point(ExistingTexture.Width, ExistingTexture.Height);
 #else
 				textureSize = device.GetTextureSize(ExistingTexture);
