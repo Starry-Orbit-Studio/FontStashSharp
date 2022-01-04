@@ -5,7 +5,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
-  <Import Project="..\..\..\build\Platforms.Common.props" />
+  <Import Project="..\..\..\..\build\Platforms.Common.props" />
 
   <PropertyGroup>
     <DefineConstants Condition="'$(Platform)'=='SharpDX'">$(DefineConstants);MONOGAME</DefineConstants>
@@ -16,8 +16,13 @@
 
   <ItemGroup>
     <PackageReference Include="Cyotek.Drawing.BitmapFont" Version="$(CyotekDrawingBitmapFontVersion)" />
-    <PackageReference Include="StbImageSharp" Version="$(StbImageSharpVersion)" />
-    <PackageReference Include="StbTrueTypeSharp" Version="$(StbTrueTypeSharpVersion)" />
+    <!-- <PackageReference Include="StbImageSharp" Version="$(StbImageSharpVersion)" />
+    <PackageReference Include="StbTrueTypeSharp" Version="$(StbTrueTypeSharpVersion)" /> -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\StbImageSharp\src\StbImageSharp.csproj" />
+    <ProjectReference Include="..\..\..\StbTrueTypeSharp\src\StbTrueTypeSharp.csproj" />
   </ItemGroup>
   
   <ItemGroup>
