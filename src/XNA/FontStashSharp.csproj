@@ -1,18 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <TargetFrameworks>net40;net45;net462;net48;netstandard2.0;net5.0;net6.0</TargetFrameworks>
     <AssemblyName>FontStashSharp</AssemblyName>
     <Description>FontStashSharp</Description>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
-  <Import Project="..\..\..\..\build\Platforms.Common.props" />
-
-  <PropertyGroup>
-    <DefineConstants Condition="'$(Platform)'=='SharpDX'">$(DefineConstants);MONOGAME</DefineConstants>
-    <DefineConstants Condition="'$(Platform)'=='WindowsGL'">$(DefineConstants);MONOGAME</DefineConstants>
-    <DefineConstants Condition="'$(Platform)'=='XNAFramework'">$(DefineConstants);XNA</DefineConstants>
-    <DefineConstants Condition="'$(Platform)'=='FNA'">$(DefineConstants);FNA</DefineConstants>
-  </PropertyGroup>
+  <Import Project=" $([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\..\..\configs\Engines\Common.props')) " />
 
   <ItemGroup>
     <PackageReference Include="Cyotek.Drawing.BitmapFont" Version="$(CyotekDrawingBitmapFontVersion)" />
@@ -21,12 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\StbImageSharp\src\StbImageSharp.csproj" />
-    <ProjectReference Include="..\..\..\StbTrueTypeSharp\src\StbTrueTypeSharp.csproj" />
+    <ProjectReference Include="$(MSBuildThisFileDirectory)..\..\..\StbImageSharp\src\StbImageSharp.csproj" />
+    <ProjectReference Include="$(MSBuildThisFileDirectory)..\..\..\StbTrueTypeSharp\src\StbTrueTypeSharp.csproj" />
   </ItemGroup>
   
   <ItemGroup>
-    <Compile Include="..\FontStashSharp\**\*.cs" LinkBase="FontStashSharp" />
-    <Compile Remove="..\FontStashSharp\obj\**\*.cs" LinkBase="FontStashSharp" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\FontStashSharp\**\*.cs" Exclude="..\FontStashSharp\obj\**\*.cs" LinkBase="FontStashSharp" />
+    <!-- <Compile Include="..\FontStashSharp\**\*.cs" LinkBase="FontStashSharp" />
+    <Compile Remove="..\FontStashSharp\obj\**\*.cs" LinkBase="FontStashSharp" /> -->
   </ItemGroup>
 </Project>
